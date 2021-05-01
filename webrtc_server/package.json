@@ -1,7 +1,19 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
-  "private": true,
+  "name": "webrtc-conference",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "keywords": [
+    "example",
+    "heroku"
+  ],
+  "author": "sir.sagramor@gmail.com",
+  "engines": {
+    "node": "10.16.3"
+  },
   "dependencies": {
     "express": ">= 2.5.8",
     "jade": ">= 0.0.1"
