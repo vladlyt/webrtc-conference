@@ -30,6 +30,3 @@ app.use((req, res) => res.send('INDEX', {root: __dirname}))
     .listen(PORT, function () {
         console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
     });
-
-
-// TODO deploy client to the heroku, explore how to do it, maybe use express?
