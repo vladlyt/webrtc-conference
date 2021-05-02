@@ -1,6 +1,7 @@
 const express = require('express');
 const app = module.exports = express.createServer();
 const io = require('socket.io')(app);
+const PORT = process.env.PORT || 3000;
 
 
 io.on('connection', function (socket) {
@@ -20,9 +21,8 @@ io.on('connection', function (socket) {
 });
 
 
-
 app.use((req, res) => res.send('INDEX', { root: __dirname }))
-    .listen(3000, function () {
+    .listen(PORT, function () {
     console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });
 
