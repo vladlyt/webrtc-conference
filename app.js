@@ -23,3 +23,7 @@ io.on('connection', function (socket) {
 app.listen(3000, function () {
     console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });
+
+
+// TODO use latest node and update dependencies and make this work on heroku
+// TODO deploy client to the heroku, explore how to do it, maybe use express?

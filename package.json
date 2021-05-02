@@ -15,11 +15,8 @@
     "node": "10.16.3"
   },
   "dependencies": {
-    "express": ">= 2.5.8",
-    "jade": ">= 0.0.1"
-  },
-  "devDependencies": {
-    "http": ">= 0.0.0",
-    "socket.io": ">= ^1.7.3"
+    "express": "2.5.8",
+    "socket.io": "^1.7.3",
+    "http": ">= 0.0.0"
   }
 }
