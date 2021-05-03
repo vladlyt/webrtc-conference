@@ -6,21 +6,29 @@ const PORT = process.env.PORT || 3000;
 
 
 io.on('connection', function (socket) {
-    console.log('Got new connection');
-    io.sockets.emit("user-joined", socket.id, io.engine.clientsCount, Object.keys(io.sockets.clients().sockets));
+    // TODO add name for a socket?
+    const roomId = socket.handshake.query.room;
+
+    socket.join(roomId);
+
+    io.to(roomId).emit(
+        "user-joined",
+        socket.id,
+        io.sockets.adapter.rooms[roomId].length,
+        Object.keys(io.sockets.adapter.rooms[roomId].sockets),
+    );
 
     socket.on('signal', (toId, message) => {
-        console.log('In signal');
         io.to(toId).emit('signal', socket.id, message);
     });
 
     socket.on("message", function (data) {
-        console.log('In message');
+        console.log('In message with data', data);
         io.sockets.emit("broadcast-message", socket.id, data);
     })
 
     socket.on('disconnect', function () {
-        console.log('In disconnect');
+        console.log('Disconnecting socket', socket.id);
         io.sockets.emit("user-left", socket.id);
     })
 });
