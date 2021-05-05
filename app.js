@@ -6,16 +6,17 @@ const PORT = process.env.PORT || 3000;
 
 
 io.on('connection', function (socket) {
-    // TODO add name for a socket?
     const roomId = socket.handshake.query.room;
-
+    socket.nickname = socket.handshake.query.name || "Incognito";
     socket.join(roomId);
 
+    const socketIds = Object.keys(io.sockets.adapter.rooms[roomId].sockets);
     io.to(roomId).emit(
         "user-joined",
         socket.id,
         io.sockets.adapter.rooms[roomId].length,
-        Object.keys(io.sockets.adapter.rooms[roomId].sockets),
+        socketIds,
+        socketIds.map((socketId) => io.sockets.sockets[socketId].nickname),
     );
 
     socket.on('signal', (toId, message) => {
